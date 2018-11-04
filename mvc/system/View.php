@@ -15,7 +15,7 @@ class View
     public function render($path, $data = false) {
        if ($data) {
           // Extract the rendering variables
-          foreach ($dtata as $key => $value) {
+          foreach ($data as $key => $value) {
              ${$key} = $value;
           }
        }
