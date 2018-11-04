@@ -10,6 +10,12 @@ else {
    exit;
 }
 
+defined('DS') || define('DS', DIRECTORY_SEPARATOR);
+define('APPDIR', realpath(__DIR__ . '/../app/') . DS);
+define('SYSTEMDIR', realpath(__DIR__ . '/../system/') . DS);
+define('PUBLICDIR', realpath(__DIR__) . DS);
+define('ROOTDIR', realpath(__DIR__ . '/../') . DS);
+
 /*
  *---------------------------------------------------------------
  * APPLICATION ENVIRONMENT
