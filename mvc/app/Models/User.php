@@ -17,10 +17,16 @@ class User extends BaseModel
       return (isset($data[0]) ? $data[0] : null);
    }
 
-   public function get_user_emial($email)
+   public function get_user_email($email)
    {
       $data = $this->db->select('email FROM users WHERE email = :email', [':email' => $email]);
       return (isset($data[0]->email) ? $data[0]->email : null);
+   }
+
+   public function get_user_reset_token($token)
+   {
+      $data = $this->db->select('id from users where reset_token = :reset_token', [':reset_token' => $token]);
+      return (isset($data[0]) ? $data[0] : null);
    }
 
    public function insert($data)
@@ -36,5 +42,5 @@ class User extends BaseModel
    public function delete($where)
    {
       $this->db->delete('users', $where);
-   }
+   }  
 }

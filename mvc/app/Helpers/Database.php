@@ -124,11 +124,11 @@ class Database extends PDO
    public function update($table, $data, $where) {
       ksort($data);
 
-      $fileDetails = null;
+      $fieldDetails = null;
       foreach ($data as $key => $value) {
-         $fileDetails .= "$key = :$key, ";
+         $fieldDetails .= "$key = :$key, ";
       }
-      $fileDetails = rtrim($fileDetails, ',');
+      $fieldDetails = rtrim($fieldDetails, ',');
 
       $whereDetails = null;
       $i = 0;
@@ -143,7 +143,7 @@ class Database extends PDO
       }
       $whereDetails = ltrim($whereDetails, ' AND ');
 
-      $stmt = $this->prepare("UPDATE $table SET $filedDetails WHERE $whereDetails");
+      $stmt = $this->prepare("UPDATE $table SET $fieldDetails WHERE $whereDetails");
 
       foreach ($data as $key => $value) {
          $stmt->bindValue(":$key", $value);
@@ -153,7 +153,9 @@ class Database extends PDO
          $stmt->bindValue(":$key", $value);
       }
 
-      $stmt->execute();
+      print_r($stmt);
+
+      // $stmt->execute();
       return $stmt->rowCount();
    }
 
