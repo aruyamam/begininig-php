@@ -17,6 +17,23 @@ class User extends BaseModel
       return (isset($data[0]) ? $data[0] : null);
    }
 
+   public function get_users()
+   {
+      return $this->db->select('* FROM users order by username');
+   }
+
+   public function get_user($id)
+   {
+      $data = $this->db->select('* FROM users WHERE id = :id', [':id' => $id]);
+      return (isset($data[0]) ? $data[0] : null);
+   }
+
+   public function get_user_username($username)
+   {
+      $data = $this->db->select('username FROM users WHERE username = :username', [':username' => $username]);
+      return (isset($data[0]->username) ? $data[0]->username : null);
+   }
+
    public function get_user_email($email)
    {
       $data = $this->db->select('email FROM users WHERE email = :email', [':email' => $email]);

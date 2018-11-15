@@ -100,7 +100,7 @@ class Database extends PDO
 
       \ksort($data);
 
-      $fileNames = implode(',', array_keys($data));
+      $fieldNames = implode(',', array_keys($data));
       $fieldValues = ':' . implode(', :', array_keys($data));
 
       $stmt = $this->prepare("INSERT INTO $table ($fieldNames) VALUES ($fieldValues)");
@@ -126,7 +126,7 @@ class Database extends PDO
 
       $fieldDetails = null;
       foreach ($data as $key => $value) {
-         $fieldDetails .= "$key = :$key, ";
+         $fieldDetails .= "$key = :$key,";
       }
       $fieldDetails = rtrim($fieldDetails, ',');
 
@@ -153,9 +153,7 @@ class Database extends PDO
          $stmt->bindValue(":$key", $value);
       }
 
-      print_r($stmt);
-
-      // $stmt->execute();
+      $stmt->execute();
       return $stmt->rowCount();
    }
 
@@ -170,9 +168,9 @@ class Database extends PDO
    public function delete($table, $where, $limit = 1) {
       ksort($where);
 
-      $whereDetials = null;
+      $whereDetails = null;
       $i = 0;
-      foreach ($data as $key => $value) {
+      foreach ($where as $key => $value) {
          if ($i = 0) {
             $whereDetails .= "$key = :$key";
          }

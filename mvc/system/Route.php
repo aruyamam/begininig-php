@@ -9,7 +9,7 @@ class Route
       $url = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
       $controller = !empty($url[0]) ? $url[0] : $config['default_controller'];
       $method = !empty($url[1]) ? $url[1] : $config['default_method'];
-      $args = !empty($url[2]) ? $url[2] : array();
+      $args = !empty($url[2]) ? array_slice($url, 2) : array();
       $class = $config['namespace'].$controller;
 
       // check the class exists
