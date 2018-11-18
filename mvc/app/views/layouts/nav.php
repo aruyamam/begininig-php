@@ -10,6 +10,7 @@
       <div id="navbar" class="navbar-collapse collapse">
          <ul class="nav navbar-nav">
             <li><a href="/">Admin</a></li>
+            <li><a href="/contacts">Contacts</a></li>
             <li><a href="/users">Users</a></li>
          </ul>
          <ul class="nav navbar-nav navbar-right">
